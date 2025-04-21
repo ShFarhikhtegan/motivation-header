@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>همکاری و مشارکت اعضا</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+        }
+        
+        body {
+            font-family: 'Vazir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            line-height: 1.8;
+        }
+        
+        .motivation-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 40px 0;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .progress-container {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        
+        .progress {
+            height: 30px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .progress-bar {
+            background-color: var(--success-color);
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .payment-card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+            height: 100%;
+        }
+        
+        .payment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .payment-card .card-header {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .payment-card .card-body {
+            padding: 25px;
+        }
+        
+        .payment-card .amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--success-color);
+            margin: 15px 0;
+        }
+        
+        .payment-card .benefits {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .payment-card .benefits li {
+            padding: 8px 0;
+            position: relative;
+            padding-right: 25px;
+        }
+        
+        .payment-card .benefits li:before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--success-color);
+            position: absolute;
+            right: 0;
+        }
+        
+        .btn-payment {
+            background-color: var(--success-color);
+            color: white;
+            font-weight: bold;
+            padding: 10px 25px;
+            border-radius: 50px;
+            border: none;
+            margin-top: 15px;
+            width: 100%;
+            transition: all 0.3s;
+        }
+        
+        .btn-payment:hover {
+            background-color: #219653;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+        }
+        
+        .testimonial {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .testimonial:before {
+            content: "\f10d";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: rgba(52, 152, 219, 0.1);
+            font-size: 70px;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            z-index: 0;
+        }
+        
+        .testimonial .quote {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial .author {
+            font-weight: bold;
+            margin-top: 15px;
+            color: var(--primary-color);
+        }
+        
+        .countdown {
+            background-color: var(--warning-color);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .highlight-box {
+            background-color: #fff8e1;
+            border-right: 5px solid var(--warning-color);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .motivation-header {
+                padding: 30px 0;
+            }
+            
+            .payment-card {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="motivation-header">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-4">همکاری و مشارکت اعضا</h1>
+            <p class="lead mb-4">با مشارکت خود در این پروژه سهیم باشید و از مزایای آن بهره‌مند شوید</p>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="d-flex justify-content-center">
+                        <a href="#payment-section" class="btn btn-light btn-lg mx-2">
+                            <i class="fas fa-hand-holding-usd me-2"></i>همین حالا مشارکت کنید
+                        </a>
+                        <a href="#benefits" class="btn btn-outline-light btn-lg mx-2">
+                            <i class="fas fa-gift me-2"></i>مزایای مشارکت
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="progress-container">
+            <h3 class="text-center mb-4">پیشرفت پروژه</h3>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65% تکمیل شده</div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="h4">187,000,000 تومان</div>
+                    <div class="text-muted">جمع واریزی‌ها</div>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <div class="h4">179 نفر</div>
+                    <div class="text-muted">تعداد مشارکت‌کنندگان</div>
+                </div>
+                <div class="col-md-4">
+                    <div class="h4">113,000,000 تومان</div>
+                    <div class="text-muted">مانده تا هدف</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="countdown">
+            <i class="fas fa-clock me-2"></i>فرصت باقی‌مانده برای مشارکت با شرایط ویژه: 7 روز
+        </div>
+
+        <div class="highlight-box">
+            <h4 class="text-warning"><i class="fas fa-star me-2"></i>مشارکت ویژه</h4>
+            <p>اعضایی که تا پایان هفته جاری مشارکت خود را انجام دهند، از <strong>تخفیف 10%</strong> در هزینه‌های آینده پروژه بهره‌مند خواهند شد.</p>
+        </div>
+
+        <div class="row" id="payment-section">
+            <div class="col-md-4">
+                <div class="payment-card">
+                    <div class="card-header">
+                        مشارکت نقره‌ای
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="amount">1,000,000 تومان</div>
+                        <ul class="benefits text-start">
+                            <li>درج نام در لیست حامیان</li>
+                            <li>گواهی مشارکت الکترونیکی</li>
+                            <li>عضویت در کانال اخبار ویژه</li>
+                        </ul>
+                        <button class="btn btn-payment">
+                            <i class="fas fa-check-circle me-2"></i>انتخاب این گزینه
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="payment-card">
+                    <div class="card-header bg-warning">
+                        مشارکت طلایی (پرفروش)
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="amount">3,000,000 تومان</div>
+                        <ul class="benefits text-start">
+                            <li>تمام مزایای نقره‌ای</li>
+                            <li>تخفیف 5% در خدمات آینده</li>
+                            <li>لوح تقدیر ویژه</li>
+                            <li>معرفی در مراسم افتتاح</li>
+                        </ul>
+                        <button class="btn btn-payment">
+                            <i class="fas fa-crown me-2"></i>انتخاب این گزینه
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="payment-card">
+                    <div class="card-header bg-success">
+                        مشارکت الماسی
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="amount">5,000,000 تومان</div>
+                        <ul class="benefits text-start">
+                            <li>تمام مزایای طلایی</li>
+                            <li>تخفیف 10% در خدمات آینده</li>
+                            <li>معرفی به عنوان حامی اصلی</li>
+                            <li>مشاوره رایگان تخصصی</li>
+                            <li>امتیازات ویژه مدیریتی</li>
+                        </ul>
+                        <button class="btn btn-payment">
+                            <i class="fas fa-gem me-2"></i>انتخاب این گزینه
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5" id="benefits">
+            <div class="col-md-6">
+                <div class="testimonial">
+                    <div class="quote">
+                        <p>"مشارکت در این پروژه نه تنها باعث پیشرفت جمعی شد، بلکه برای من نیز مزایای زیادی داشت. از تخفیف‌های ویژه تا ارتباطات ارزشمندی که ایجاد کردم."</p>
+                        <div class="author">- اسفندیار مهرابیان (حامی پروژه)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="testimonial">
+                    <div class="quote">
+                        <p>"به عنوان یکی از اولین حامیان، شاهد رشد روزافزون پروژه بوده‌ام. امروز به خوبی می‌بینم که سرمایه‌گذاری من چقدر هوشمندانه بوده است."</p>
+                        <div class="author">- نعمت‌الله اسماعیلی (حامی ویژه)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="progress-container">
+                    <h3 class="text-center mb-4">لیست آخرین مشارکت‌کنندگان</h3>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>ردیف</th>
+                                    <th>نام و نام خانوادگی</th>
+                                    <th>مبلغ مشارکت</th>
+                                    <th>تاریخ</th>
+                                    <th>سطح مشارکت</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>اسفندیار مهرابیان</td>
+                                    <td class="amount">9,000,000 تومان</td>
+                                    <td>1403/02/01</td>
+                                    <td><span class="badge bg-success">الماسی</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>نعمت‌الله اسماعیلی</td>
+                                    <td class="amount">6,000,000 تومان</td>
+                                    <td>1403/02/01</td>
+                                    <td><span class="badge bg-success">الماسی</span></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>عباس نعمت الهی سروستانی</td>
+                                    <td class="amount">6,000,000 تومان</td>
+                                    <td>1403/02/03</td>
+                                    <td><span class="badge bg-success">الماسی</span></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>شیری</td>
+                                    <td class="amount">8,000,000 تومان</td>
+                                    <td>1403/02/05</td>
+                                    <td><span class="badge bg-success">الماسی</span></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>هادی رمضانی</td>
+                                    <td class="amount">5,000,000 تومان</td>
+                                    <td>1403/02/10</td>
+                                    <td><span class="badge bg-warning text-dark">طلایی</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center mt-3">
+                        <a href="#" class="btn btn-primary">مشاهده لیست کامل مشارکت‌کنندگان</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="progress-container text-center">
+                    <h3 class="mb-4">راه‌های مشارکت</h3>
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="p-4 bg-light rounded">
+                                <i class="fas fa-mobile-alt fa-3x mb-3 text-primary"></i>
+                                <h4>پرداخت آنلاین</h4>
+                                <p>از طریق درگاه بانکی امن</p>
+                                <button class="btn btn-primary">پرداخت آنلاین</button>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="p-4 bg-light rounded">
+                                <i class="fas fa-university fa-3x mb-3 text-primary"></i>
+                                <h4>واریز بانکی</h4>
+                                <p>شماره حساب: 1234567890 - بانک ملی</p>
+                                <button class="btn btn-primary">مشاهده اطلاعات حساب</button>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="p-4 bg-light rounded">
+                                <i class="fas fa-phone fa-3x mb-3 text-primary"></i>
+                                <h4>پرداخت حضوری</h4>
+                                <p>تماس برای هماهنگی: 09123456789</p>
+                                <button class="btn btn-primary">تماس با ما</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white py-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>درباره پروژه</h5>
+                    <p>این پروژه با هدف بهبود شرایط و ارائه خدمات بهتر به اعضا طراحی شده است. مشارکت شما می‌تواند به سرعت بخشیدن به این روند کمک کند.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>تماس با ما</h5>
+                    <p><i class="fas fa-phone me-2"></i> 021-12345678</p>
+                    <p><i class="fas fa-envelope me-2"></i> info@example.com</p>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> تهران، خیابان نمونه، پلاک 123</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>پیوندهای مفید</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">سوالات متداول</a></li>
+                        <li><a href="#" class="text-white">قوانین و مقررات</a></li>
+                        <li><a href="#" class="text-white">گزارش مالی</a></li>
+                        <li><a href="#" class="text-white">اخبار پروژه</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // شمارش معکوس
+        function updateCountdown() {
+            const now = new Date();
+            const endDate = new Date();
+            endDate.setDate(now.getDate() + 7);
+            
+            const diff = endDate - now;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            
+            document.querySelector('.countdown').innerHTML = `
+                <i class="fas fa-clock me-2"></i>فرصت باقی‌مانده برای مشارکت با شرایط ویژه: 
+                ${days} روز و ${hours} ساعت و ${minutes} دقیقه
+            `;
+        }
+        
+        setInterval(updateCountdown, 60000);
+        updateCountdown();
+        
+        // انیمیشن برای دکمه‌ها
+        document.querySelectorAll('.btn-payment').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px)';
+                this.style.boxShadow = '0 7px 20px rgba(39, 174, 96, 0.4)';
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 5px 15px rgba(39, 174, 96, 0.3)';
+            });
+        });
+    </script>
+</body>
+</html>
