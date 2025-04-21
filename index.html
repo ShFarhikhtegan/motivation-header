@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لیست پرداخت‌های اعضا</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --success-color: #27ae60;
+            --info-color: #2980b9;
+            --light-color: #ecf0f1;
+        }
+        
+        body {
+            font-family: 'Vazir', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px 0;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .progress-container {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .progress-wrapper {
+            position: relative;
+            margin-bottom: 25px;
+        }
+        
+        .progress {
+            height: 30px;
+            border-radius: 15px;
+            background-color: var(--light-color);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+            overflow: visible;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, var(--success-color), #2ecc71);
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 16px;
+            position: relative;
+            overflow: visible;
+            transition: width 1s ease-in-out;
+            box-shadow: 0 2px 10px rgba(46, 204, 113, 0.3);
+        }
+        
+        .progress-bar:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            border-radius: 15px;
+            background: linear-gradient(
+                to right,
+                rgba(255,255,255,0.3) 0%,
+                rgba(255,255,255,0) 100%
+            );
+        }
+        
+        .progress-percent {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-weight: bold;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .stats-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .stats-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .stats-card .value {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 10px 0;
+        }
+        
+        .stats-card .label {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        
+        .table-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .table thead th {
+            background: linear-gradient(to bottom, var(--primary-color), #34495e);
+            color: white;
+            font-weight: bold;
+            border: none;
+        }
+        
+        .table tbody tr:hover {
+            background-color: rgba(52, 152, 219, 0.05);
+        }
+        
+        .amount {
+            font-weight: bold;
+            color: var(--success-color);
+        }
+        
+        .pagination .page-item.active .page-link {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .pagination .page-link {
+            color: var(--primary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .table-responsive {
+                font-size: 14px;
+            }
+            
+            .header {
+                padding: 20px 0;
+            }
+            
+            .stats-card {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="display-5 fw-bold">لیست پرداخت‌های اعضا</h1>
+            <p class="mb-0">به تاریخ 1403/02/01</p>
+        </div>
+
+        <!-- گرافیک پیشرفت بهبود یافته -->
+        <div class="progress-container">
+            <h3 class="text-center mb-4"><i class="fas fa-chart-line me-2"></i>پیشرفت پروژه</h3>
+            
+            <div class="progress-wrapper">
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
+                        <span class="progress-percent">65% تکمیل شده</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="stats-card">
+                        <div class="value">187,000,000</div>
+                        <div class="label">تومان جمع واریزی‌ها</div>
+                        <i class="fas fa-coins mt-2" style="color: var(--success-color); font-size: 24px;"></i>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stats-card">
+                        <div class="value">179</div>
+                        <div class="label">تعداد مشارکت‌کنندگان</div>
+                        <i class="fas fa-users mt-2" style="color: var(--info-color); font-size: 24px;"></i>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stats-card">
+                        <div class="value">113,000,000</div>
+                        <div class="label">تومان مانده تا هدف</div>
+                        <i class="fas fa-bullseye mt-2" style="color: var(--secondary-color); font-size: 24px;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        <input type="text" class="form-control" id="searchInput" placeholder="جستجو بر اساس نام یا پلاک...">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select" id="amountFilter">
+                        <option value="">همه مبالغ</option>
+                        <option value="1000000">1,000,000 تومان</option>
+                        <option value="2000000">2,000,000 تومان</option>
+                        <option value="3000000">3,000,000 تومان</option>
+                        <option value="5000000">5,000,000 تومان</option>
+                        <option value="6000000">6,000,000 تومان</option>
+                        <option value="8000000">8,000,000 تومان</option>
+                        <option value="9000000">9,000,000 تومان</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-outline-primary w-100" id="exportBtn">
+                        <i class="fas fa-file-excel me-2"></i>خروجی Excel
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>ردیف</th>
+                            <th>نام و نام خانوادگی</th>
+                            <th>پلاک</th>
+                            <th>تعداد سهم</th>
+                            <th>مبلغ (تومان)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>اسفندیار مهرابیان</td>
+                            <td>238، 711، 704</td>
+                            <td>3</td>
+                            <td class="amount">9,000,000</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>نعمت‌الله اسماعیلی</td>
+                            <td>604، 502</td>
+                            <td>2 پلاک کامل</td>
+                            <td class="amount">6,000,000</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>نبی‌الله رنجبر</td>
+                            <td>517</td>
+                            <td>4</td>
+                            <td class="amount">4,000,000</td>
+                        </tr>
+                        <!-- بقیه ردیف‌ها -->
+                        <tr>
+                            <td>164</td>
+                            <td>عباس نعمت الهی سروستانی</td>
+                            <td>706</td>
+                            <td>6</td>
+                            <td class="amount">6,000,000</td>
+                        </tr>
+                        <tr>
+                            <td>178</td>
+                            <td>شیری</td>
+                            <td>99-241-703-533</td>
+                            <td>8</td>
+                            <td class="amount">8,000,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">قبلی</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">بعدی</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-0.19.3/package/dist/xlsx.full.min.js"></script>
+    <script>
+        // جستجو در جدول
+        document.getElementById('searchInput').addEventListener('keyup', function() {
+            const value = this.value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
+            
+            rows.forEach(row => {
+                const name = row.cells[1].textContent.toLowerCase();
+                const plaque = row.cells[2].textContent.toLowerCase();
+                if (name.includes(value) || plaque.includes(value)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        // فیلتر بر اساس مبلغ
+        document.getElementById('amountFilter').addEventListener('change', function() {
+            const value = this.value;
+            const rows = document.querySelectorAll('tbody tr');
+            
+            rows.forEach(row => {
+                const amount = row.cells[4].textContent.replace(/,/g, '');
+                if (value === '' || amount === value) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+<a href="payment_list (10) اول اردیبهشت.xlsx" download class="btn btn-primary">
+    <i class="fas fa-file-excel"></i> دانلود فایل اکسل
+</a>
+        // خروجی اکسل
+        document.getElementById('exportBtn').addEventListener('click', function() {
+            const table = document.querySelector('table');
+            const wb = XLSX.utils.table_to_book(table);
+            XLSX.writeFile(wb, 'لیست_پرداخت_ها.xlsx');
+        });
+
+        // انیمیشن پیشرفت
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBar = document.querySelector('.progress-bar');
+            progressBar.style.width = '0%';
+            
+            setTimeout(() => {
+                progressBar.style.width = '65%';
+            }, 300);
+        });
+    </script>
+</body>
+</html>
+
+<a href="payment_list (10) اول اردیبهشت.xlsx" download class="btn btn-primary">
+    <i class="fas fa-file-excel"></i> دانلود فایل اکسل
+</a>
