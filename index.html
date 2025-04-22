@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پنل پرداخت‌های اعضا</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* استایل‌های قبلی را اینجا حفظ کنید */
+        .download-section {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: center;
+            border: 1px dashed #3498db;
+        }
+        .download-btn {
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(52, 152, 219, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- بخش‌های قبلی را اینجا حفظ کنید -->
+        
+        <!-- بخش دانلود فایل اکسل -->
+        <div class="download-section">
+            <h4><i class="fas fa-file-excel me-2"></i>دریافت فایل کامل پرداخت‌ها</h4>
+            <p class="text-muted">می‌توانید فایل کامل لیست پرداخت‌ها را دریافت کنید</p>
+            
+            <!-- روش 1: دانلود فایل از پیش آماده -->
+            <a href="payment_list.xlsx" download="payment_list.xlsx" class="download-btn me-3">
+                <i class="fas fa-download me-2"></i>دانلود فایل اکسل
+            </a>
+            
+            <!-- روش 2: تولید فایل اکسل از جدول -->
+            <button id="generateExcel" class="download-btn">
+                <i class="fas fa-file-export me-2"></i>تولید فایل اکسل
+            </button>
+        </div>
+
+        <!-- جدول داده‌ها -->
+        <table id="paymentTable" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ردیف</th>
+                    <th>نام و نام خانوادگی</th>
+                    <th>پلاک</th>
+                    <th>تعداد سهم</th>
+                    <th>مبلغ (تومان)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>اسفندیار مهرابیان</td>
+                    <td>238، 711، 704</td>
+                    <td>3</td>
+                    <td>9,000,000</td>
+                </tr>
+                <!-- ردیف‌های دیگر -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- کتابخانه SheetJS برای تولید اکسل -->
+    <script src="https://cdn.sheetjs.com/xlsx-0.19.3/package/dist/xlsx.full.min.js"></script>
+    <script>
+        // تولید فایل اکسل از جدول
+        document.getElementById('generateExcel').addEventListener('click', function() {
+            const table = document.getElementById('paymentTable');
+            const workbook = XLSX.utils.table_to_book(table);
+            
+            // ذخیره فایل با نام payment_list.xlsx
+            XLSX.writeFile(workbook, 'payment_list.xlsx', {
+                bookType: 'xlsx',
+                type: 'file'
+            });
+        });
+        
+        // اگر فایل از قبل وجود دارد، این تابع آن را بررسی می‌کند
+        function checkFileExists() {
+            fetch('payment_list.xlsx')
+                .then(response => {
+                    if(response.status === 200) {
+                        document.querySelector('a[download]').style.display = 'inline-block';
+                    }
+                })
+                .catch(() => {
+                    document.querySelector('a[download]').style.display = 'none';
+                });
+        }
+        
+        // بررسی وجود فایل هنگام لود صفحه
+        window.addEventListener('load', checkFileExists);
+    </script>
+</body>
+</html>
